@@ -9,26 +9,14 @@ const ProductList = () => {
     return (
       <>
         {console.log(products)}
-        <h5 style={{ textTransform: "none" }}>Products not found.</h5>;
+        <h5 style={{ textTransform: "none" }}>Products not found.</h5>
       </>
     );
-  }
-
-  if (products.length > 1 && grid_view) {
-    return (
-      <>
-        <GridView products={products} />
-      </>
-    );
-  }
-
-  if (products.length > 1 && !grid_view) {
-    return (
-      <>
-        <ListView products={products} />
-      </>
-    );
-  }
-};
+  }else{   
+    if (products && grid_view) {
+      return <GridView products={products} />
+  }else{
+      return <ListView products={products} />
+  }}};
 
 export default ProductList;

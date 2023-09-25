@@ -96,26 +96,23 @@ const filter_reducer = (state, action) => {
       );
     }
     if (company !== "all") {
-      /**
-       * TODO
-       */
+      tempProducts = tempProducts.filter(
+        (product) => product.company === company
+      );
     }
     if (color !== "all") {
-      /**
-       * TODO
-       */
+      tempProducts = tempProducts.filter((product) =>
+        product.colors.includes(color)
+      );
     }
 
-    // filter by price
-    /**
-     * TODO
-     */
-
+    if(price) {
+      tempProducts = tempProducts.filter((product) => product.price <= price)
+    }
+    
     // filter by shipping
     if (shipping) {
-      /**
-       * TODO
-       */
+      tempProducts = tempProducts.filter((product) => product.shipping === true);
     }
     return { ...state, filtered_products: tempProducts };
   }
