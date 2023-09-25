@@ -1,17 +1,16 @@
 import React from "react";
-import styled from "styled-components";
-import PageHero from "./PageHero";
+
 const Contact = () => {
   return (
     <>
     {/* <PageHero title='Contact'/> */}
-      <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-16 mx-auto mt-24">
+      <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-16 mt-24 border-2 rounded-lg mx-14 border-black">
         <div className="grid md:grid-cols-2 gap-8">
           <div className="max-w-md">
-            <h2 className="text-2xl font-bold md:text-3xl md:leading-tight dark:text-white">
+            <h2 className="text-2xl font-bold md:text-3xl md:leading-tight ">
               Subscribe
             </h2>
-            <p className="mt-3 text-gray-600 dark:text-gray-400">
+            <p className="mt-3 text-gray-600 ">
               Subscribe and start making the most of every engagement.
             </p>
           </div>
@@ -27,12 +26,12 @@ const Contact = () => {
                     type="text"
                     id="hero-input"
                     name="hero-input"
-                    className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-md focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                    className="py-3 px-4 block w-full border border-black shadow-sm rounded-md focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-700 "
                     placeholder="Enter your email"
                   />
                 </div>
                 <a
-                  className="w-full sm:w-auto whitespace-nowrap inline-flex justify-center items-center gap-x-3 text-center bg-blue-600 hover:bg-blue-700 border border-transparent text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition py-3 px-4 dark:focus:ring-offset-gray-800"
+                  className="w-full sm:w-auto whitespace-nowrap inline-flex justify-center items-center gap-x-3 text-center px-4 py-2 rounded-full border-2 border-black font-semibold bg-orange-500 text-white hover:bg-orange-300 hover:text-black focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-all text-lg dark:focus:ring-offset-gray-800"
                   href="#"
                 >
                   Subscribe

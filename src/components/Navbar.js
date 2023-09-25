@@ -15,7 +15,7 @@ const Nav = () => {
   // TODO
 
   return (
-    <div className="nav">
+    <nav className="nav rounded-full border-2 border-black sticky top-0 z-50 bg-orange-100">
       <div className="nav-center">
         <div className="nav-header">
           <Link to="/">
@@ -25,12 +25,17 @@ const Nav = () => {
             <FaBars />
           </button>
         </div>
-        <ul className="nav-links">
+        <ul className="nav-links ">
           {links.map((link) => {
             const { id, text, url } = link;
             return (
               <li key={id}>
-                <Link to={url}>{text}</Link>
+                <Link
+                  to={url}
+                  className="border-2 border-black px-5 py-1 rounded-full font-medium"
+                >
+                  {text}
+                </Link>
               </li>
             );
           })}
@@ -47,7 +52,7 @@ const Nav = () => {
         </ul>
         <CartButtons />
       </div>
-    </div>
+    </nav>
   );
 };
 

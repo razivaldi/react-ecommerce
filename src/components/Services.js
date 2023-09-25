@@ -4,7 +4,7 @@ import "./services.css";
 
 const Services = () => {
   return (
-    <><h2 className="text-center mb-10">OUR BENEFIT</h2>
+    <><h2 className="text-center border-2 border-black rounded-full py-3 bg-amber-100 my-16">Our Benefits</h2>
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-14 border border-black rounded-lg bg-white">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 items-center gap-12">
           {services.map((service) => (

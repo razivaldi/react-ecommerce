@@ -23,8 +23,8 @@ const FeaturedProducts = () => {
   //return featured products
   return (
     <>
-      <div className="mt-20">
-        <h1 className="text-center">Featured Product</h1>
+      <div className="-mt-10">
+        <h2 className="text-center border-2 border-black rounded-full py-3 bg-amber-100">Featured Product</h2>
       </div>
       <div className="grid lg:grid-cols-3 gap-10 mx-10 sm:grid-cols-2 lg:mx-16 my-16">
         {featured_products.map((product) => {
@@ -36,7 +36,7 @@ const FeaturedProducts = () => {
         <Link to='products'>
           <button
             type="button"
-            className="mx-auto w-fit px-4 py-5 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-lg dark:focus:ring-offset-gray-800"
+            className="mx-auto w-fit px-4 py-5 rounded-full border-2 border-black font-semibold bg-orange-500 text-white hover:bg-orange-300 hover:text-black focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-all text-lg dark:focus:ring-offset-gray-800"
           >
             See Another Collection
           </button>
