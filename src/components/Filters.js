@@ -26,7 +26,7 @@ const Filters = () => {
   const colors = getUniqueValues(all_products, "colors");
   return (
     <Wrapper>
-      <div className=" content border-y-2 border-r-2 border-black py-4 rounded-lg -ml-1">
+      <div className="content border-2 mt-12 lg:mt-0 border-black py-4 rounded-xl">
         <form onSubmit={(e) => e.preventDefault()}>
           {/* search input */}
           <div className="form-control">
@@ -54,8 +54,6 @@ const Filters = () => {
                     className="unset w-fit hover:bg-amber-100"
                   >
                     {c}
-                    {/* <span className="text-black border border-black rounded-full px-3 ">{c}
-                    </span> */}
                   </button>
                 );
               })}
@@ -130,7 +128,7 @@ const Filters = () => {
               min={min_price}
               max={max_price}
               value={price}
-              className="range"
+              className="w-2/6 lg:w-5/6"
             />
           </div>
           {/* end of price */}
@@ -143,6 +141,7 @@ const Filters = () => {
               id="shipping"
               onChange={updateFilters}
               checked={shipping}
+              className="ml-10"
             />
           </div>
           {/* end of  shipping */}
@@ -183,7 +182,7 @@ const Wrapper = styled.section`
 
   .unset {
     padding: 0;
-    color:black;
+    color: black;
     border: 1px solid black;
     border-radius: 1rem;
     padding: 0 0.5rem;
@@ -210,6 +209,8 @@ const Wrapper = styled.section`
     border-radius: var(--radius);
     border-color: transparent;
     padding: 0.25rem;
+    border: 2px solid black;
+    border-radius: 10px;
   }
   .colors {
     display: flex;
@@ -250,11 +251,7 @@ const Wrapper = styled.section`
     margin-bottom: 0.25rem;
   }
   .shipping {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
     text-transform: capitalize;
-    column-gap: 0.5rem;
     font-size: 1rem;
   }
   .clear-btn {
@@ -262,6 +259,7 @@ const Wrapper = styled.section`
     color: var(--clr-white);
     padding: 0.25rem 0.5rem;
     border-radius: var(--radius);
+    margin: 0 1rem;
   }
   @media (min-width: 768px) {
     .content {

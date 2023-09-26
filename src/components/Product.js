@@ -8,7 +8,7 @@ const Product = ({ image, name, price, id, stars }) => {
   return (
     <>
       <Link to={`/products/${id}`}
-        className="flex flex-col bg-white border shadow-sm rounded-xl overflow-hidden hover:shadow-lg transition dark:border-gray-700 dark:shadow-slate-700"
+        className="flex flex-col bg-white border-2 shadow-sm rounded-xl overflow-hidden hover:shadow-lg transition dark:border-gray-700 dark:shadow-slate-700"
       >
         <img
           className="h-56 w-full object-cover"
@@ -104,5 +104,5 @@ const Wrapper = styled.article`
     color: var(--clr-primary-5);
     letter-spacing: var(--spacing);
   }
-`;
-export default Product;
+  `;
+  export default Product;

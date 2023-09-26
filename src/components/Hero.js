@@ -1,24 +1,28 @@
 import React from "react";
 import denim from "../assets/denim.png";
 import hoodie from "../assets/hoodie.png";
-import indoor from "../assets/hero-bcg.jpeg";
-import { IoSparklesOutline } from "react-icons/io5";
+import cloth from "../assets/clothes.jpg";
 import { Link } from "react-router-dom";
-import announce from '../assets/announce.png';
+import bgneutral from "../assets/neutralbg.jpg";
 
 const Hero = () => {
   return (
     <>
       <div className="flex w-full h-4/5 pt-20 -mt-20 pb-20 bg-gradient-to-t from-orange-200 to-amber-100">
-        <div className="p-16 pb-0 mt-14">
-          <h1>Your New Fashion Start Here!</h1>
-          <p>a bit description about whats going on</p>
-          <Link to="products">
-            <button className="w-1/2 py-5 bg-orange-500 rounded-full border-2 border-black md:w-2/6 text-xl font-semibold text-sky-100 mt-5 hover:bg-orange-300 hover:text-black">
+        <div className="pr-10 pb-0 mt-10">
+          <div className="border-2 border-black rounded-e-full w-full h-5/6 p-5" style={{backgroundImage:`url(${bgneutral})`}}>
+            <h1 className="font-bold my-14 bg-gradient-to-b from-gray-900 to-gray-600 bg-clip-text text-transparent">
+              Your New Fashion Start Here!
+            </h1>
+            <h2 className="font-semibold">One Store For</h2>
+            <h1 className="font-bold text-white rounded bg-zinc-800 underline w-fit p-3">Many Things</h1>
+            <Link
+              to="products"
+              className="px-2 py-1 inline-block bg-orange-500 rounded-full border-2 border-black md:text-xl font-semibold text-white mt-5 hover:bg-orange-300 hover:text-black"
+            >
               Shop Now
-            </button>
-          </Link>
-          <img src={announce} className="absolute bottom-10 scale-150 translate-x-20 -rotate-12"/>
+            </Link>
+          </div>
         </div>
         <div className="w-1/2 invisible md:visible">
           <div
@@ -27,35 +31,23 @@ const Hero = () => {
           >
             <img
               src={denim}
+              alt="denim"
               className="absolute z-10 -right-8 -top-10 rounded-lg -rotate-6 shadow-2xl border-2 border-dashed border-black"
             />
             <img
-              src={indoor}
+              src={cloth}
+              alt="cloth"
               className="w-full h-full rotate-3 rounded-lg shadow-lg"
             />
             <img
               src={hoodie}
+              alt="hoodie"
               className="absolute -bottom-7 -left-8 rounded-lg -rotate-6 shadow-2xl border-2 border-dashed border-black"
             />
           </div>
         </div>
       </div>
-      {/* <div className="w-full my-5 h-8 bg-red-400 flex rotate-1 place-items-center -mt-5 border-y-2 border-black invisible md:visible">
-        <div className="flex justify-center items-center mx-auto invisible lg:visible">
-          <span className="px-10">Cek Toko Sebelah</span>
-          <IoSparklesOutline />
-          <span className="px-10">Discount Up to 50%</span>
-          <IoSparklesOutline />
-          <span className="px-10">Best Fashion</span>
-          <IoSparklesOutline />
-          <span className="px-10">New Arrivals</span>
-          <IoSparklesOutline />
-          <span className="px-10">New Collection</span>
-          <IoSparklesOutline />
-        </div>
-      </div> */}
     </>
   );
 };
-
 export default Hero;
