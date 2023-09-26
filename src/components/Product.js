@@ -8,15 +8,15 @@ const Product = ({ image, name, price, id, stars }) => {
   return (
     <>
       <Link to={`/products/${id}`}
-        className="flex flex-col bg-white border shadow-sm rounded-3xl overflow-hidden hover:shadow-lg transition dark:border-gray-700 dark:shadow-slate-700/[.7]"
+        className="flex flex-col bg-white border shadow-sm rounded-xl overflow-hidden hover:shadow-lg transition dark:border-gray-700 dark:shadow-slate-700"
       >
         <img
-          className="h-72 rounded-t-xl "
+          className="h-56 w-full object-cover"
           src={image}
           alt="Image Description"
         />
-        <div className="p-4 md:p-5 h-36 relative">
-          <h3 className="text-lg font-bold text-gray-800 ">
+        <div className="p-2 md:px-4 h-28 relative">
+          <h3 className="text-lg leading-4 font-bold text-gray-800 ">
             {name}
           </h3>
           <p className="my-1 text-gray-800 dark:text-gray-400">

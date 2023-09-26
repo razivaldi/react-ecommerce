@@ -28,7 +28,7 @@ const Sort = () => {
       <span>
         Sort by{" "}
         <form className="inline">
-          <select onChange={updateSort} value={sort}>
+          <select onChange={updateSort} value={sort} className="rounded-full border border-black">
             <option value="price-lowest">Lowest Price</option>
             <option value="price-highest">Highest Price</option>
             <option value="name-a">A-Z</option>

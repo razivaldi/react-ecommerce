@@ -16,10 +16,10 @@ const Services = () => {
                 <div className="bg-gray-400 w-9 h-0.5"></div>
               </div>
               <div className="mt-5">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                <h3 className="text-lg font-semibold text-gray-800">
                   {service.title}
                 </h3>
-                <p className="mt-1 text-gray-600 dark:text-gray-400">
+                <p className="mt-1 text-gray-600">
                   {service.text}
                 </p>
               </div>

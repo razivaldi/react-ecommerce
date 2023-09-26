@@ -26,7 +26,7 @@ const Filters = () => {
   const colors = getUniqueValues(all_products, "colors");
   return (
     <Wrapper>
-      <div className="content">
+      <div className=" content border-y-2 border-r-2 border-black py-4 rounded-lg -ml-1">
         <form onSubmit={(e) => e.preventDefault()}>
           {/* search input */}
           <div className="form-control">
@@ -36,14 +36,14 @@ const Filters = () => {
               value={text}
               placeholder="search"
               onChange={updateFilters}
-              className="search-input"
+              className="search-input text-black border-2 border-black rounded-full"
             />
           </div>
           {/* end of search input */}
           {/* category */}
           <div className="form-control">
             <h5>category</h5>
-            <div>
+            <div className="flex flex-wrap">
               {categories.map((c, index) => {
                 return (
                   <button
@@ -51,9 +51,11 @@ const Filters = () => {
                     onClick={updateFilters}
                     name="category"
                     type="button"
-                    className="w-fit"
+                    className="unset w-fit hover:bg-amber-100"
                   >
                     {c}
+                    {/* <span className="text-black border border-black rounded-full px-3 ">{c}
+                    </span> */}
                   </button>
                 );
               })}
@@ -162,17 +164,30 @@ const Wrapper = styled.section`
     margin-bottom: 1.25rem;
     h5 {
       margin-bottom: 0.5rem;
+      font-weight: 500;
+      font-size: 1rem;
     }
+    padding: 0 0.5rem;
   }
   .search-input {
-    padding: 0.5rem;
-    background: var(--clr-grey-10);
-    border-radius: var(--radius);
-    border-color: transparent;
+    padding: 0.3rem 1.3rem;
+    background: white;
+    border-radius: 10px;
+    border-color: black;
     letter-spacing: var(--spacing);
   }
   .search-input::placeholder {
     text-transform: capitalize;
+    color: var(--clr-grey-3);
+  }
+
+  .unset {
+    padding: 0;
+    color:black;
+    border: 1px solid black;
+    border-radius: 1rem;
+    padding: 0 0.5rem;
+    margin-right: 0.5rem;
   }
 
   button {

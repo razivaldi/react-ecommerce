@@ -58,14 +58,16 @@ const SingleProductPage = () => {
   return (
     <>
       <PageHero title={name} product />
-      <div className="grid md:grid-cols-2 mt-20 items-center">
-        <div className="ml-10">
-        <ProductImages images={images} />
+      <div className="grid md:grid-cols-2 mt-12 p-5 mx-10 border-2 border-black rounded-2xl">
+        <div className="ml-5 ">
+          <ProductImages images={images} />
         </div>
         <div className="mx-10 my-10">
           <h1 className="text-4xl font-bold">{name}</h1>
           <Stars rating={stars} reviews={reviews} />
-          <h5>{formatPrice(price)}</h5>
+          <h5 className="text-orange-500 font-semibold">
+            {formatPrice(price)}
+          </h5>
           <p>{description}</p>
           <div className="grid grid-cols-4">
             <p>Tersedia:</p>

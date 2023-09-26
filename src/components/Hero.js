@@ -4,10 +4,12 @@ import hoodie from "../assets/hoodie.png";
 import indoor from "../assets/hero-bcg.jpeg";
 import { IoSparklesOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import announce from '../assets/announce.png';
+
 const Hero = () => {
   return (
     <>
-      <div className="flex w-full h-4/5 pt-32 -mt-20 pb-20 bg-orange-200">
+      <div className="flex w-full h-4/5 pt-20 -mt-20 pb-20 bg-gradient-to-t from-orange-200 to-amber-100">
         <div className="p-16 pb-0 mt-14">
           <h1>Your New Fashion Start Here!</h1>
           <p>a bit description about whats going on</p>
@@ -16,6 +18,7 @@ const Hero = () => {
               Shop Now
             </button>
           </Link>
+          <img src={announce} className="absolute bottom-10 scale-150 translate-x-20 -rotate-12"/>
         </div>
         <div className="w-1/2 invisible md:visible">
           <div

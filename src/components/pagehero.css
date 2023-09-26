@@ -1,18 +1,19 @@
 .section-hero{
-    background-image: linear-gradient(to right, #38bdf8 0%, #bae6fd 100%);
     width: 100%;
     display: flex;
     align-items: center;  
+    padding: 1rem;
+    font-size: medium;
 }
 
   
 .section-hero a {
     color: var(--clr-primary-3);
     transition: var(--transition);
+    padding:0.4rem 0.01rem;
+    font-weight: 600;
 }
 
 .section-hero a:hover {
-    border: 1px solid black;
-    border-radius: 5px;
     color: var(--clr-primary-1);
 }

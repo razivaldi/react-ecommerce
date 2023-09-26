@@ -15,11 +15,11 @@ const Nav = () => {
   // TODO
 
   return (
-    <nav className="nav rounded-full border-2 border-black sticky top-0 z-50 bg-orange-100">
+    <nav className="nav rounded-full border-2 border-black sticky top-0 z-50 bg-orange-100 overflow-clip">
       <div className="nav-center">
         <div className="nav-header">
           <Link to="/">
-            <img src={logo} />
+            <img src={logo}/>
           </Link>
           <button type="button" className="nav-toggle" onClick={openSidebar}>
             <FaBars />

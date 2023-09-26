@@ -1,5 +1,6 @@
 import React from 'react'
 import { GiCompass, GiDiamondHard, GiStabbedNote } from 'react-icons/gi'
+import {LiaShippingFastSolid, LiaHandHoldingHeartSolid, LiaCloneSolid} from 'react-icons/lia'
 export const links = [
   {
     id: 1,
@@ -26,21 +27,21 @@ export const links = [
 export const services = [
   {
     id: 1,
-    icon: <GiCompass />,
+    icon: <LiaHandHoldingHeartSolid/>,
     title: 'Pilih Jenis',
     text:
       'Pilih jenis barang yang ingin kamu customs.',
   },
   {
     id: 2,
-    icon: <GiDiamondHard />,
+    icon: <LiaCloneSolid/>,
     title: 'Pilih Warna dan Ukuran',
     text:
       'Temukan lebih dari 100 macam warna dan 5 ukuran.',
   },
   {
     id: 3,
-    icon: <GiStabbedNote />,
+    icon: <LiaShippingFastSolid />,
     title: 'COD',
     text:
       'Kirim dengan kurir favorit kamu dan bayar COD.',
