@@ -62,7 +62,7 @@ const SingleProductPage = () => {
         <div className="ml-5 ">
           <ProductImages images={images} />
         </div>
-        <div className="mx-10 my-10">
+        <div className="mx-10my-10">
           <h1 className="text-4xl font-bold">{name}</h1>
           <Stars rating={stars} reviews={reviews} />
           <h5 className="text-orange-500 font-semibold">
