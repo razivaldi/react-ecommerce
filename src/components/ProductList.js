@@ -8,7 +8,6 @@ const ProductList = () => {
   if (products.length < 1) {
     return (
       <>
-        {console.log(products)}
         <h5 style={{ textTransform: "none" }}>Products not found.</h5>
       </>
     );

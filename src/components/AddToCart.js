@@ -10,7 +10,7 @@ const AddToCart = ({ product }) => {
   // add to cart
   const { addToCart } = useCartContext()
   const { id, stock, colors } = product
-  const [mainColor, setMainColor] = useState(colors[0])
+  const [mainColor, setMainColor] = useState()
   const [amount, setAmount] = useState(1)
 
   const increase = () => {
@@ -23,18 +23,34 @@ const AddToCart = ({ product }) => {
     })
   }
   const decrease = () => {
-    /**
-     * TODO
-     */
+    setAmount((oldAmount) => {
+      let tempAmount = oldAmount - 1
+      if (tempAmount < stock) {
+        tempAmount = stock
+      }
+      return tempAmount
+    })
   }
   return (
     <div className='addtocart'>
       <div className='colors'>
         <span>colors :</span>
         <div>
-          {/**
-           * TODO add color selection
-           */}
+          {colors && colors.map((color, index) => {
+            return (
+              <button
+                key={index}
+                style={{ background: color }}
+                className={`${
+                  mainColor === color ? 'color-btn active' : 'color-btn'
+                }`}
+                onClick={() => setMainColor(color)}
+              >
+                {console.log(color)}
+                {mainColor === color ? <FaCheck /> : null}
+              </button>
+            )
+          })}
         </div>
       </div>
       <div className='btn-container'>

@@ -11,9 +11,6 @@ import {
   Stars,
   PageHero,
 } from "../components";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import Product from "../components/Product";
 const SingleProductPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -77,6 +74,7 @@ const SingleProductPage = () => {
             <p className="row-start-3">Brand:</p>
             <span className="col-span-3 row-start-3">{company}</span>
           </div>
+          <AddToCart product={product} />
         </div>
       </div>
     </>
