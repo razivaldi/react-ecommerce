@@ -22,7 +22,7 @@ const CartPage = () => {
     <div className='empty-cart'>
       <PageHero title='cart' />
       <div className='page'>
-        <CartContent></CartContent>
+        <CartContent/>
       </div>
     </div>
   )
