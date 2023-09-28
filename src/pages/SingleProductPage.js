@@ -55,11 +55,11 @@ const SingleProductPage = () => {
   return (
     <>
       <PageHero title={name} product />
-      <div className="grid md:grid-cols-2 mt-12 p-5 mx-10 border-2 border-black rounded-2xl">
+      <div className="grid md:grid-cols-2 gap-5 mt-12 p-5 mx-10 border-2 border-black rounded-2xl">
         <div className="mmx-auto">
           <ProductImages images={images} />
         </div>
-        <div className="m-10">
+        <div className="m-8">
           <h1 className="text-4xl font-bold">{name}</h1>
           <Stars stars={stars} reviews={reviews} />
           <h5 className="text-orange-500 font-semibold">
@@ -74,9 +74,28 @@ const SingleProductPage = () => {
             <p className="row-start-3">Brand:</p>
             <span className="col-span-3 row-start-3">{company}</span>
           </div>
+          {stock > 0 && <AddToCart product={product} />}
+        </div>
 
-          {stock > 0 && (<AddToCart product={product} />)}
-          
+        {/* review section */}
+        <div>
+          <h5 className="font-medium">REVIEWS</h5>
+          <div className="bg-sky-200">No Review</div>
+        </div>
+        <div>
+          <h5 className="font-medium">WRITE A CUSTOMER REVIEW</h5>
+          <form>
+            <label className="font-medium">Rating</label>
+            <br />
+            <select className="w-full">
+              <option>Select...</option>
+            </select>
+            <br />
+            <label className="font-medium">Comment</label>
+            <br />
+            <textarea className="w-full"></textarea>
+            <button className="w-full bg-orange-300">SUBMIT</button>
+          </form>
         </div>
       </div>
     </>

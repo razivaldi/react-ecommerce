@@ -1,5 +1,5 @@
 .nav {
-    height: 5rem;
+    height: 4rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,8 +18,8 @@
 }
 
 .nav-header img {
-    width: 175px;
-    top: -45px;
+    width: 150px;
+    top: -52px;
     margin-left: 15px;
     position: absolute;
 }
