@@ -46,7 +46,6 @@ const AddToCart = ({ product }) => {
                   }`}
                   onClick={() => setMainColor(color)}
                 >
-                  {console.log(color)}
                   {mainColor === color ? <FaCheck /> : null}
                 </button>
               );
