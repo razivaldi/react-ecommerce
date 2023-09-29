@@ -11,6 +11,9 @@ import {
   GET_SINGLE_PRODUCT_BEGIN,
   GET_SINGLE_PRODUCT_SUCCESS,
   GET_SINGLE_PRODUCT_ERROR,
+  GET_REVIEWS_BEGIN,
+  GET_REVIEWS_SUCCESS,
+  GET_REVIEWS_ERROR,
 } from '../actions'
 
 const initialState = {
@@ -22,6 +25,9 @@ const initialState = {
   single_product_loading: false,
   single_product_error: false,
   single_product: {},
+  reviews_loading: false,
+  reviews_error: false,
+  reviews: [],
 }
 
 const ProductsContext = React.createContext()
@@ -58,6 +64,17 @@ export const ProductsProvider = ({ children }) => {
     }
   }
 
+  const fetchReviews = async (url) => {
+    dispatch({ type: GET_REVIEWS_BEGIN })
+    try{
+      const response = await axios.get(url)
+      const reviews = response.data
+      dispatch({ type: GET_REVIEWS_SUCCESS, payload: reviews })
+    }catch(error){
+      dispatch({ type: GET_REVIEWS_ERROR })
+    }
+  }
+
   useEffect(() => {
     fetchProducts(url)
   }, [])
@@ -69,6 +86,7 @@ export const ProductsProvider = ({ children }) => {
         openSidebar,
         closeSidebar,
         fetchSingleProduct,
+        fetchReviews,
       }}
     >
       {children}

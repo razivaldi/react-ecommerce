@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import { single_product_url as url } from "../utils/constants";
+import { reviews_url } from "../utils/constants";
 import { formatPrice } from "../utils/helpers";
 import {
   Loading,
@@ -19,10 +20,15 @@ const SingleProductPage = () => {
     single_product_error: error,
     single_product: product,
     fetchSingleProduct,
+    review_loading,
+    review_error,
+    reviews,
+    fetchReviews,
   } = useProductsContext();
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
+    fetchReviews(`${reviews_url}?product_id=${id}`);
     // eslint-disable-next-line
   }, [id]);
   useEffect(() => {
@@ -36,8 +42,14 @@ const SingleProductPage = () => {
   if (loading) {
     return <Loading />;
   }
-
   if (error) {
+    return <Error />;
+  }
+
+  if (review_loading) {
+    return <Loading />;
+  }
+  if (review_error) {
     return <Error />;
   }
 
@@ -47,11 +59,12 @@ const SingleProductPage = () => {
     description,
     stock,
     stars,
-    reviews,
+    // reviews,
     id: sku,
     company,
     images,
   } = product;
+
   return (
     <>
       <PageHero title={name} product />
@@ -61,7 +74,7 @@ const SingleProductPage = () => {
         </div>
         <div className="m-8">
           <h1 className="text-4xl font-bold">{name}</h1>
-          <Stars stars={stars} reviews={reviews} />
+          {/* <Stars stars={stars} reviews={reviews} /> */}
           <h5 className="text-orange-500 font-semibold">
             {formatPrice(price)}
           </h5>
@@ -78,9 +91,15 @@ const SingleProductPage = () => {
         </div>
 
         {/* review section */}
+
         <div>
           <h5 className="font-medium">REVIEWS</h5>
-          <div className="bg-sky-200">No Review</div>
+          {reviews.map((review) => (
+            <div className="bg-sky-200 rounded-md px-2 my-2" key={review.id}>
+              <p className="font-semibold">{review.username}</p>
+              <p>{review.review}</p>
+            </div>
+          ))}
         </div>
         <div>
           <h5 className="font-medium">WRITE A CUSTOMER REVIEW</h5>

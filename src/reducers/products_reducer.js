@@ -7,6 +7,9 @@ import {
   GET_SINGLE_PRODUCT_BEGIN,
   GET_SINGLE_PRODUCT_SUCCESS,
   GET_SINGLE_PRODUCT_ERROR,
+  GET_REVIEWS_BEGIN,
+  GET_REVIEWS_SUCCESS,
+  GET_REVIEWS_ERROR,
 } from '../actions'
 
 const products_reducer = (state, action) => {
@@ -55,6 +58,28 @@ const products_reducer = (state, action) => {
       single_product_error: true,
     }
   }
+  if (action.type === GET_REVIEWS_BEGIN) {
+    return {
+      ...state,
+      reviews_loading: true,
+      reviews_error: false,
+    }
+  }
+  if (action.type === GET_REVIEWS_SUCCESS) {
+    return {
+      ...state,
+      reviews_loading: false,
+      reviews: action.payload,
+    }
+  }
+  if (action.type === GET_REVIEWS_ERROR) {
+    return {
+      ...state,
+      reviews_loading: false,
+      reviews_error: true,
+    }
+  }
+
   throw new Error(`No Matching "${action.type}" - action type`)
 }
 

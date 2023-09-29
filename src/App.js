@@ -14,6 +14,8 @@ import {
 } from "./pages";
 
 import Login from "./pages/Login";
+import Delivery from "./components/Delivery";
+import Payment from "./components/Payment";
 function App() {
   return (
     <AuthWrapper>
@@ -29,22 +31,20 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="check" element={<Checkout/>}/>
-          <Route
+          <Route path="checkout/*">
+            <Route index element={<Checkout />}/>
+            <Route path="delivery" element={<Delivery/>}/>
+            <Route path="payment" element={<Payment/>}/>
+          </Route>
+
+          {/* <Route
             path="checkout"
             element={
               <PrivateRoute>
                 <Checkout />
               </PrivateRoute>
             }
-          />
-
-          {/* 
-          TODO :
-          Route to 
-          About,Login, Cart, 
-          Products, SingleProduct, 
-          Checkout */}
+          /> */}
           <Route path="error" element={<Error />} />
         </Routes>
         <Footer />

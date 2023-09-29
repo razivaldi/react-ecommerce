@@ -52,3 +52,5 @@ export const products_url = 'https://63cdf885d2e8c29a9bced636.mockapi.io/api/v1/
 
 export const single_product_url = 'https://63cdf885d2e8c29a9bced636.mockapi.io/api/v1/products/'
 
+export const reviews_url = 'https://63cdf885d2e8c29a9bced636.mockapi.io/api/v1/reviews'
+
