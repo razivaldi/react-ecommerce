@@ -1,7 +1,15 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 export default function Payment() {
+  const [payment, setPayment] = useState()
+  const handleSubmit = () => {
+    localStorage.setItem('payment', payment);
+    }
+
   return (
-    <div className="max-w-lg px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-      <div className="mx-auto max-w-2xl">
+    <div className="w-full px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+      <div className="mx-auto max-w-md">
         <div className="text-center">
           <h2 className="text-xl text-gray-800 font-bold sm:text-3xl"></h2>
         </div>
@@ -9,34 +17,36 @@ export default function Payment() {
           <h2 className="text-xl text-gray-800 font-bold text-center mb-5">
             PAYMENT METHOD
           </h2>
-          <form>
+          <form >
             <div className="flex flex-col gap-y-3">
-              <div class="flex">
+              <div className="flex">
                 <input
                   type="radio"
                   name="payment"
                   className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                   id="paypal"
-                  checked
-                  
+                  value="paypal"
+                  onClick={(e) => setPayment(e.target.value)}
                 />
                 <label
-                  for="paypal"
+                  htmlFor="paypal"
                   className="text-sm text-gray-500 ml-2 dark:text-gray-400"
                 >
                   Paypal
                 </label>
               </div>
 
-              <div class="flex">
+              <div className="flex">
                 <input
                   type="radio"
                   name="payment"
                   className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                   id="Credit-Card"
+                  value="Credit-Card"
+                  onClick={(e) => setPayment(e.target.value)}
                 />
                 <label
-                  for="Credit-Card"
+                  htmlFor="Credit-Card"
                   className="text-sm text-gray-500 ml-2 dark:text-gray-400"
                 >
                   Credit Card
@@ -49,9 +59,11 @@ export default function Payment() {
                   name="payment"
                   className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                   id="Bank-transfer"
+                  value="Bank-transfer"
+                  onClick={(e) => setPayment(e.target.value)}
                 />
                 <label
-                  for="Bank-transfer"
+                  htmlFor="Bank-transfer"
                   className="text-sm text-gray-500 ml-2 dark:text-gray-400"
                 >
                   Bank Transfer
@@ -59,12 +71,15 @@ export default function Payment() {
               </div>
             </div>
             <div className="mt-6 grid">
-              <button
-                type="submit"
-                className="py-3 w-full px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all dark:focus:ring-offset-gray-800"
-              >
-                Submit
-              </button>
+              <Link to="/checkout/confirm">
+                <button
+                  type="submit"
+                  className="py-3 w-full px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all dark:focus:ring-offset-gray-800"
+                  onClick={handleSubmit}
+                >
+                  Submit
+                </button>
+              </Link>
             </div>
           </form>
         </div>

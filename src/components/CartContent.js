@@ -7,8 +7,6 @@ import CartItem from "./CartItem";
 import "./carcontent.scss";
 const CartContent = () => {
   const { cart, clearCart } = useCartContext();
-  const [carts] = cart
-  console.log(carts)
 
   return (
     <div className="w-11/12 p-5 mx-auto rounded-lg border border-black">
