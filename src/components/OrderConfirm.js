@@ -10,10 +10,10 @@ export default function OrderConfirm() {
 
   return (
     <>
-      <div className="w-11/12 mx-auto border mt-8 border-black">
-        <div className="flex justify-around p-5">
+      <div className="w-11/12 mx-auto border mt-8 border-black p-5 rounded-2xl">
+        <div className="flex justify-around p-5 mb-10">
           <div className="flex">
-            <span className="p-3 w-fit h-fit block bg-orange-400 rounded-full">
+            <span className="p-3 w-fit text-2xl h-fit block bg-orange-400 rounded-full">
               <BsPersonCircle />
             </span>
             <div className="ml-4">
@@ -22,7 +22,7 @@ export default function OrderConfirm() {
             </div>
           </div>
           <div className="flex">
-            <span className="p-3 w-fit h-fit block bg-orange-400 rounded-full">
+            <span className="p-3 w-fit text-2xl h-fit block bg-orange-400 rounded-full">
               <BsTruck />
             </span>
             <div className="ml-4">
@@ -32,7 +32,7 @@ export default function OrderConfirm() {
             </div>
           </div>
           <div className="flex">
-            <span className="p-3 w-fit h-fit block bg-orange-400 rounded-full">
+            <span className="p-3 w-fit text-2xl h-fit block bg-orange-400 rounded-full">
               <BsBox2 />
             </span>
             <div className="ml-4">
@@ -45,7 +45,7 @@ export default function OrderConfirm() {
           <div className="w-4/6 mx-auto">
             {cart.map((item) => {
               return (
-                <div key={item.id} className="flex bg-neutral-300 items-center justify-between rounded-lg p-2 my-2">
+                <div key={item.id} className="flex bg-gray-200 items-center justify-between rounded-lg p-2 my-2">
                   <div className="flex items-center p-2 w-2/6 ">
                     <img
                       src={item.image}
@@ -70,7 +70,7 @@ export default function OrderConfirm() {
               );
             })}
           </div>
-          <div className="w-1/4">
+          <div className="w-1/4 relative self-end">
             <CartTotals />
           </div>
         </div>

@@ -22,7 +22,6 @@ export default function Delivery() {
     navigate("payment");
   };
 
-  console.log(deliver);
 
   return (
     <div className="w-full p-5">
@@ -31,7 +30,7 @@ export default function Delivery() {
           <h2 className="text-xl text-gray-800 font-bold text-center mb-8">
             DELIVERY ADDRESS
           </h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="my-2 border rounded-lg">
               <input
                 type="text"
@@ -80,7 +79,6 @@ export default function Delivery() {
               <button
                 type="submit"
                 className="py-3 w-full px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all dark:focus:ring-offset-gray-800"
-                onClick={handleSubmit}
               >
                 Submit
               </button>

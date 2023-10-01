@@ -22,7 +22,7 @@ const SingleProductPage = () => {
     fetchSingleProduct,
     review_loading,
     review_error,
-    reviews,
+    reviews : comments,
     fetchReviews,
   } = useProductsContext();
 
@@ -59,7 +59,7 @@ const SingleProductPage = () => {
     description,
     stock,
     stars,
-    // reviews,
+    reviews,
     id: sku,
     company,
     images,
@@ -74,7 +74,7 @@ const SingleProductPage = () => {
         </div>
         <div className="m-8">
           <h1 className="text-4xl font-bold">{name}</h1>
-          {/* <Stars stars={stars} reviews={reviews} /> */}
+          <Stars stars={stars} reviews={reviews} />
           <h5 className="text-orange-500 font-semibold">
             {formatPrice(price)}
           </h5>
@@ -94,10 +94,10 @@ const SingleProductPage = () => {
 
         <div>
           <h5 className="font-medium">REVIEWS</h5>
-          {reviews.map((review) => (
-            <div className="bg-sky-200 rounded-md px-2 my-2" key={review.id}>
-              <p className="font-semibold">{review.username}</p>
-              <p>{review.review}</p>
+          {comments.map((comment) => (
+            <div className="bg-sky-200 rounded-md px-2 my-2" key={comment.id}>
+              <p className="font-semibold">{comment.username}</p>
+              <p>{comment.review}</p>
             </div>
           ))}
         </div>

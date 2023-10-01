@@ -1,5 +1,4 @@
 import React from 'react'
-import { GiCompass, GiDiamondHard, GiStabbedNote } from 'react-icons/gi'
 import {LiaShippingFastSolid, LiaHandHoldingHeartSolid, LiaCloneSolid} from 'react-icons/lia'
 export const links = [
   {
