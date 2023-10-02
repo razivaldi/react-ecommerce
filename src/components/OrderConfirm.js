@@ -1,12 +1,13 @@
+import { useContext } from "react";
 import { useCartContext } from "../context/cart_context";
 import { formatPrice } from "../utils/helpers";
 import CartTotals from "./CartTotals";
 import { BsBox2, BsPersonCircle, BsTruck } from "react-icons/bs";
+import { CheckoutContext } from "../context/checkout_context";
 
 export default function OrderConfirm() {
   const { cart } = useCartContext();
-  const deliver = JSON.parse(localStorage.getItem('deliver'))
-  const payment = (localStorage.getItem('payment'))
+  const { deliver } = useContext(CheckoutContext);
 
   return (
     <>
@@ -27,8 +28,8 @@ export default function OrderConfirm() {
             </span>
             <div className="ml-4">
               <h4>Order Info</h4>
-              <p>Shipping: {deliver.country}</p>
-              <p>Pay Method: {payment}</p>
+              <p>Country: {deliver.country}</p>
+              <p>Pay Method: {deliver.payment}</p>
             </div>
           </div>
           <div className="flex">
@@ -37,23 +38,29 @@ export default function OrderConfirm() {
             </span>
             <div className="ml-4">
               <h4>Deliver to</h4>
-              <p>Address:{deliver.city} {deliver.address}, {deliver.postal}</p>
+              <p>
+                Address: {deliver.address}, {deliver.postal}
+              </p>
+              <p>City: {deliver.city}</p>
             </div>
           </div>
         </div>
-        <div className="flex justify-between">
-          <div className="w-4/6 mx-auto">
+        <div className="md:flex justify-between">
+          <div className="w-full md:w-4/6 mx-auto md:mx-0">
             {cart.map((item) => {
               return (
-                <div key={item.id} className="flex bg-gray-200 items-center justify-between rounded-lg p-2 my-2">
-                  <div className="flex items-center p-2 w-2/6 ">
+                <div
+                  key={item.id}
+                  className="flex bg-gray-200 items-center justify-between rounded-lg p-2 pr-4 my-2"
+                >
+                  <div className="flex items-center p-2 w-2/6">
                     <img
                       src={item.image}
                       alt={item.name}
                       className="border border-black rounded-xl w-2/4 h-2/4 "
                     />
                     <span className="text-left ml-3">
-                        <p className="font-semibold">{item.name}</p>
+                      <p className="font-semibold">{item.name}</p>
                       <p>
                         Color :
                         <span
@@ -70,7 +77,7 @@ export default function OrderConfirm() {
               );
             })}
           </div>
-          <div className="w-1/4 relative self-end">
+          <div className="w-full md:w-1/4 md:self-end">
             <CartTotals />
           </div>
         </div>

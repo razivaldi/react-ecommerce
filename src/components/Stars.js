@@ -20,7 +20,7 @@ const Stars = ({ stars, reviews }) => {
   return (
     <div className="star-container">
       <div className="flex">{tempStars}</div>
-      <p className="reviews">({reviews} customer reviews)</p>
+      <p className="reviews">({reviews.length} customer reviews)</p>
     </div>
   );
 };

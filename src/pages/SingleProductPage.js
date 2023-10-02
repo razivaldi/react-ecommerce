@@ -12,6 +12,7 @@ import {
   Stars,
   PageHero,
 } from "../components";
+import Review from "../components/Review";
 const SingleProductPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -22,13 +23,13 @@ const SingleProductPage = () => {
     fetchSingleProduct,
     review_loading,
     review_error,
-    reviews : comments,
+    reviews,
     fetchReviews,
   } = useProductsContext();
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
-    fetchReviews(`${reviews_url}?product_id=${id}`);
+    fetchReviews(`${reviews_url}?product_id=${id}&sortBy=createdAt&order=desc`);
     // eslint-disable-next-line
   }, [id]);
   useEffect(() => {
@@ -59,7 +60,6 @@ const SingleProductPage = () => {
     description,
     stock,
     stars,
-    reviews,
     id: sku,
     company,
     images,
@@ -91,31 +91,7 @@ const SingleProductPage = () => {
         </div>
 
         {/* review section */}
-
-        <div>
-          <h5 className="font-medium">REVIEWS</h5>
-          {comments.map((comment) => (
-            <div className="bg-sky-200 rounded-md px-2 my-2" key={comment.id}>
-              <p className="font-semibold">{comment.username}</p>
-              <p>{comment.review}</p>
-            </div>
-          ))}
-        </div>
-        <div>
-          <h5 className="font-medium">WRITE A CUSTOMER REVIEW</h5>
-          <form>
-            <label className="font-medium">Rating</label>
-            <br />
-            <select className="w-full">
-              <option>Select...</option>
-            </select>
-            <br />
-            <label className="font-medium">Comment</label>
-            <br />
-            <textarea className="w-full"></textarea>
-            <button className="w-full bg-orange-300">SUBMIT</button>
-          </form>
-        </div>
+        <Review reviews={reviews}/>
       </div>
     </>
   );

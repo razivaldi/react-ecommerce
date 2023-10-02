@@ -1,27 +1,9 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { CheckoutContext } from "../context/checkout_context";
 
 export default function Delivery() {
-  const [deliver, setDeliver] = useState({
-    address: "",
-    city: "",
-    postal: "",
-    country: "",
-  });
-
-  const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setDeliver({ ...deliver, [name]: value });
-  };
-
-  const handleSubmit = () => {
-    localStorage.setItem("deliver", JSON.stringify(deliver));
-    navigate("payment");
-  };
-
+  const { handleChange } = useContext(CheckoutContext);
 
   return (
     <div className="w-full p-5">
@@ -30,7 +12,7 @@ export default function Delivery() {
           <h2 className="text-xl text-gray-800 font-bold text-center mb-8">
             DELIVERY ADDRESS
           </h2>
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="my-2 border rounded-lg">
               <input
                 type="text"
@@ -76,12 +58,14 @@ export default function Delivery() {
               />
             </div>
             <div className="mt-6 grid">
-              <button
-                type="submit"
-                className="py-3 w-full px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all dark:focus:ring-offset-gray-800"
-              >
-                Submit
-              </button>
+              <Link to="payment">
+                <button
+                  type="submit"
+                  className="py-3 w-full px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all dark:focus:ring-offset-gray-800"
+                >
+                  Submit
+                </button>
+              </Link>
             </div>
           </form>
         </div>
