@@ -12,10 +12,9 @@ const Nav = () => {
   const { openSidebar } = useProductsContext();
   const { userState } = useUserContext();
 
-  // TODO
 
   return (
-    <nav className="nav rounded-full border-2 border-black lg:sticky top-0 z-50 bg-orange-100 overflow-clip">
+    <nav className="nav rounded-b-lg border border-black shadow-lg lg:sticky top-0 z-50 bg-orange-100 overflow-clip">
       <div className="nav-center">
         <div className="nav-header">
           <Link to="/">
