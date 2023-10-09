@@ -69,7 +69,7 @@ const SidebarContainer = styled.div`
   }
   .logo {
     justify-self: center;
-    height: 45px;
+    height: 90px;
   }
   .links {
     margin-bottom: 2rem;
@@ -100,7 +100,7 @@ const SidebarContainer = styled.div`
     height: 100%;
     background: var(--clr-white);
     transition: var(--transition);
-    transform: translate(-100%);
+    transform: translate(100%);
     z-index: -1;
   }
   .show-sidebar {
