@@ -1,38 +1,44 @@
 
-  
-
 const user_reducer = (state, action) => {
 
     if (action.type === 'USER_LOGIN_REQUEST') {
-        //TODO
+        return {...state, loading: true}
     }
 
     if (action.type === 'USER_LOGIN_SUCCESS') {
 
-        //TODO
+        const newState = {...state,
+            userId: action.payload.userId,
+            token: action.payload.token,
+            loading: false,
+            error: ''
+        }
+
+        localStorage.setItem('userInfo', JSON.stringify(newState))
+        return newState
     }
 
     if (action.type === 'USER_LOGIN_FAIL') {
         
-        //TODO
+        return {...state, loading: false, error: action.payload}
     }
 
 
     if (action.type === 'USER_LOGOUT') {
-        
-        //TODO
+        localStorage.removeItem('userInfo')
+        return {...state, userId: '', token: ''}
     }
 
     if (action.type === 'USER_REGISTER_REQUEST') {
-        //TODO
+        
+        return {...state, loading: true}
     }
     if (action.type === 'USER_REGISTER_FAIL') {
-        //TODO
+        return {...state, loading: false, error: action.payload }
     }
     if (action.type === 'USER_REGISTER_SUCCESS') {
-        //TODO
+        return {...state, loading: false, error: action.payload }
     }
-    
     
 }
 

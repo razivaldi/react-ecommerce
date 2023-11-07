@@ -15,7 +15,7 @@ let token = localStorage.getItem("userInfo")
  
 
 const initialState = {
-  user: userId,
+  userId: userId,
   token: token,
   loading: false,
   error: ""
@@ -26,39 +26,46 @@ export const UserProvider = ({ children }) => {
 
   const [userState, dispatch] = useReducer(reducer, initialState)
   
-  const login = (email, password) => {
+  const login = async (email, password) => {
+    dispatch({ type: 'USER_LOGIN_REQUEST' });
 
+    const userData = {email: email, password: password};
+
+    await axios.post(`http://localhost:8000/auth/login`,userData).then(resp => {
+
+        dispatch({ type: 'USER_LOGIN_SUCCESS', payload: resp.data });
+        console.log(resp.data)
       
+    }).catch(err => {
 
+        dispatch({type: 'USER_LOGIN_FAIL', payload: err.response.message});
+    })
   };
 
   const logout = () => {
     dispatch({ type: 'USER_LOGOUT' });
   };
   
-  
-  const register = (name, email, password) => {
+  const register = async (name, email, password) => {
       dispatch({type: 'USER_REGISTER_REQUEST'});  
 
-      const userData = {name:name, email: email,password: password};
+      const userData = {name:name, email: email, password: password};
 
-      axios.post(`/api/users/register`,userData).then(resp => {
+      await axios.post(`http://localhost:8000/auth/signup`,userData).then(resp => {
 
-          dispatch({ type: 'USER_REGISTER_SUCCESS', payload: resp });
+          dispatch({ type: 'USER_REGISTER_SUCCESS', payload: resp.data.message });
       
         }).catch(err => {
 
-          dispatch({type: 'USER_REGISTER_FAIL', payload: err.message,
-          });
+          dispatch({type: 'USER_REGISTER_FAIL', payload: err.response.data.message });
 
       })
   };
 
   
-  
   return (
     <UserContext.Provider
-      value={{ userState, login, logout }}
+      value={{ userState, login, logout, register }}
     >
       {children}
     </UserContext.Provider>

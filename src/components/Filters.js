@@ -179,7 +179,6 @@ const Wrapper = styled.section`
     text-transform: capitalize;
     color: var(--clr-grey-3);
   }
-
   .unset {
     padding: 0;
     color: black;

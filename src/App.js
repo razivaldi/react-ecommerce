@@ -17,6 +17,7 @@ import Login from "./pages/Login";
 import Delivery from "./components/Delivery";
 import Payment from "./components/Payment";
 import OrderConfirm from "./components/OrderConfirm";
+import Registration from "./pages/Registration";
 function App() {
   return (
     <AuthWrapper>
@@ -25,6 +26,8 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="registration" element={<Registration/>} />
           <Route path="products/*">
             <Route index element={<Products />} />
             <Route path=":id" element={<SingleProduct />} />

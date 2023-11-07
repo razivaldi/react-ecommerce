@@ -51,7 +51,7 @@ const FeaturedProducts = () => {
         <Carousel responsive={responsive}>
           {featured_products.map((product) => {
             return (
-              <div className="mx-3">
+              <div className="mx-3" key={product.id}>
                 <Product key={product.id} {...product} />
               </div>
             );

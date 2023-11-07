@@ -1,4 +1,16 @@
+import { useRef, useState } from "react";
+import { BsStarFill } from "react-icons/bs";
+
 export default function Review({ reviews }) {
+  const [rating, setRating] = useState(null);
+  const userReview = useRef();
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(e)
+  }
+  // console.log(userReview.current.value)
+
   return (
     <>
       <div>
@@ -13,17 +25,37 @@ export default function Review({ reviews }) {
       </div>
       <div>
         <h5 className="font-medium">WRITE A CUSTOMER REVIEW</h5>
-        <form>
+        <form onSubmit={handleSubmit}>
           <label className="font-medium">Rating</label>
           <br />
-          <select className="w-full">
-            <option>Select...</option>
-          </select>
+          {[...Array(5)].map((_, index) => {
+            const ratingValue = index + 1;
+            return (
+              <label key={index} className="inline-flex mx-0.5">
+                <input
+                  type="radio"
+                  className="hidden"
+                  name="rating"
+                  value={ratingValue}
+                  onClick={() => setRating(ratingValue)}
+                  />
+                <BsStarFill
+                  size={20}
+                  color={ratingValue <= rating ? "#ffd700" : "#d3d3d3"}
+                />
+              </label>
+            );
+          })}
           <br />
           <label className="font-medium">Comment</label>
           <br />
-          <textarea className="w-full"></textarea>
-          <button className="w-full bg-orange-300">SUBMIT</button>
+          <textarea
+            className="w-full border rounded-lg resize-none border-black"
+            ref={userReview}
+          ></textarea>
+          <button className="w-full bg-orange-300 rounded-lg font-semibold">
+            SUBMIT
+          </button>
         </form>
       </div>
     </>

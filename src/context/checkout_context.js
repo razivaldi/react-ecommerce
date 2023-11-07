@@ -1,6 +1,6 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 
-export const CheckoutContext = React.createContext()
+export const CheckoutContext = React.createContext();
 
 const initialState = {
   address: "",
@@ -8,26 +8,26 @@ const initialState = {
   postal: "",
   country: "",
   payment: "",
-}
+};
 
-export const CheckoutProvider = ({children}) => {
-  const [deliver, setDeliver] = useState(initialState)
-  
+export const CheckoutProvider = ({ children }) => {
+  const [deliver, setDeliver] = useState(initialState);
+
   const handleChange = (e) => {
-    const name = e.target.name
-    const value = e.target.value  
-    setDeliver({ ...deliver, [name]: value })
-  }
+    const name = e.target.name;
+    const value = e.target.value;
+    setDeliver({ ...deliver, [name]: value });
+  };
 
   const handlePayment = (e) => {
-    setDeliver({ ...deliver, payment: e.target.value })
-  }
-
+    setDeliver({ ...deliver, payment: e.target.value });
+  };
 
   return (
-    <CheckoutContext.Provider value={{deliver, setDeliver, handleChange, handlePayment}}>
+    <CheckoutContext.Provider
+      value={{ deliver, setDeliver, handleChange, handlePayment }}
+    >
       {children}
     </CheckoutContext.Provider>
-  )
-}
-
+  );
+};
