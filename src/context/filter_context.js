@@ -19,7 +19,7 @@ const initialState = {
   sort: 'price-lowest',
   filters: {
     text: '',
-    company: 'all',
+    brand: 'all',
     category: 'all',
     color: 'all',
     min_price: 0,
@@ -63,7 +63,7 @@ export const FilterProvider = ({ children }) => {
       value = e.target.dataset.color
     }
     if (name === 'price') {
-      value = Number(value)
+      value = e.target.value
     }
     if (name === 'shipping') {
       value = e.target.checked

@@ -1,40 +1,26 @@
 import React from "react";
 import { formatPrice } from "../utils/helpers";
 import { Link } from "react-router-dom";
-import "./listview.css";
 
 const ListView = ({ products }) => {
+  console.log(products)
   return (
-    <section>
       <div className="products-center">
         {products.map((product) => {
           return (
-            <div
-              key={product.id}
-              className="border-2 border-black rounded-xl flex overflow-hidden m-5 bg-white shadow-lg hover:bg-orange-50"
-            >
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-2/6 h-auto"
-              />
-              <div className="m-3">
-                <h3 className="font-semi text-black">{product.name}</h3>
-                <p className="text-orange-500 font-semibold">
-                  {formatPrice(product.price)}
-                </p>
-                <p className="mb-5">{product.description}</p>
-                <Link to={`/products/${product.id}`}>
-                  <span className="border border-black rounded-full px-3 py-1 hover:bg-amber-100">
-                    Detail
-                  </span>
-                </Link>
+              <div key={product._id} className="rounded border border-black flex">
+                <img 
+                src={`http://localhost:8000/${product.imageUrl[0]}`}
+                className="w-2/6 h-full"/>
+                <div className="w-4/6 ml-4">
+                  <p className="text-2xl">{product.title}</p>
+                  <p>{formatPrice(product.price)}</p>
+                  <Link to={`/products/${product._id}`}>More Detail</Link>
+                </div>
               </div>
-            </div>
           );
         })}
       </div>
-    </section>
   );
 };
 

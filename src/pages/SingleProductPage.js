@@ -29,7 +29,7 @@ const SingleProductPage = () => {
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
-    fetchReviews(`${reviews_url}?product_id=${id}&sortBy=createdAt&order=desc`);
+    fetchReviews(`${reviews_url}${id}`);
     // eslint-disable-next-line
   }, [id]);
   useEffect(() => {
@@ -55,25 +55,27 @@ const SingleProductPage = () => {
   }
 
   const {
-    name,
+    title,
     price,
     description,
     stock,
     stars,
-    id: sku,
-    company,
-    images,
+    _id: sku,
+    brand,
+    imageUrl,
   } = product;
+
+  console.log(reviews)
 
   return (
     <>
-      <PageHero title={name} product />
+      <PageHero title={title} product />
       <div className="grid md:grid-cols-2 gap-5 mt-12 p-5 mx-10 border-2 border-black rounded-2xl">
         <div className="mmx-auto">
-          <ProductImages images={images} />
+          <ProductImages images={imageUrl} />
         </div>
         <div className="m-8">
-          <h1 className="text-4xl font-bold">{name}</h1>
+          <h1 className="text-4xl font-bold">{title}</h1>
           <Stars stars={stars} reviews={reviews} />
           <h5 className="text-orange-500 font-semibold">
             {formatPrice(price)}
@@ -85,7 +87,7 @@ const SingleProductPage = () => {
             <p className="row-start-2">SKU:</p>
             <span className="col-span-3 row-start-2">{sku}</span>
             <p className="row-start-3">Brand:</p>
-            <span className="col-span-3 row-start-3">{company}</span>
+            <span className="col-span-3 row-start-3">{brand}</span>
           </div>
           {stock > 0 && <AddToCart product={product} />}
         </div>

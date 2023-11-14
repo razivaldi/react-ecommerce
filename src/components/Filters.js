@@ -9,7 +9,7 @@ const Filters = () => {
     filters: {
       text,
       category,
-      company,
+      brand,
       color,
       min_price,
       price,
@@ -22,7 +22,7 @@ const Filters = () => {
   } = useFilterContext();
 
   const categories = getUniqueValues(all_products, "category");
-  const companies = getUniqueValues(all_products, "company");
+  const brands = getUniqueValues(all_products, "brand");
   const colors = getUniqueValues(all_products, "colors");
   return (
     <Wrapper>
@@ -62,14 +62,14 @@ const Filters = () => {
           {/* end of category */}
           {/* company */}
           <div className="form-control">
-            <h5>company</h5>
+            <h5>brand</h5>
             <select
-              name="company"
-              value={company}
+              name="brand"
+              value={brand}
               onChange={updateFilters}
               className="company"
             >
-              {companies.map((c, index) => {
+              {brands.map((c, index) => {
                 return (
                   <option key={index} value={c}>
                     {c}
@@ -103,7 +103,7 @@ const Filters = () => {
                   <button
                     key={index}
                     name="color"
-                    style={{ background: c }}
+                    style={{ background: c}}
                     className={`${
                       color === c ? "color-btn active" : "color-btn"
                     }`}
@@ -160,7 +160,7 @@ const Filters = () => {
 
 const Wrapper = styled.section`
   .form-control {
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.5rem;
     h5 {
       margin-bottom: 0.5rem;
       font-weight: 500;
@@ -213,6 +213,7 @@ const Wrapper = styled.section`
   }
   .colors {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
   }
   .color-btn {
@@ -222,7 +223,7 @@ const Wrapper = styled.section`
     border-radius: 50%;
     background: #222;
     margin-right: 0.5rem;
-    border: none;
+    border: black 1px solid;
     cursor: pointer;
     opacity: 0.5;
     display: flex;

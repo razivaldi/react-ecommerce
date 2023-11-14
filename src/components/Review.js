@@ -6,22 +6,26 @@ export default function Review({ reviews }) {
   const userReview = useRef();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(e)
-  }
-  // console.log(userReview.current.value)
+    e.preventDefault();
+    console.log(e);
+  };
+
+  const product = reviews;
+  const prodReview = product.reviews;
+  console.log(prodReview);
 
   return (
     <>
       <div>
         <h5 className="font-medium">REVIEWS</h5>
-        {reviews.map((review) => (
-          <div className="bg-sky-200 rounded-md px-2 my-2" key={review.id}>
-            <div>{new Date(review.createdAt).toLocaleDateString()}</div>
-            <p className="font-semibold">{review.username}</p>
-            <p>{review.review}</p>
-          </div>
-        ))}
+        {prodReview &&
+          prodReview.map((review) => (
+            <div className="bg-sky-200 rounded-md px-2 my-2" key={review._id}>
+              {/* <div>{new Date(review.createdAt).toLocaleDateString()}</div> */}
+              <p className="font-semibold">{review.userId.name}</p>
+              <p>{review.message}</p>
+            </div>
+          ))}
       </div>
       <div>
         <h5 className="font-medium">WRITE A CUSTOMER REVIEW</h5>
@@ -38,7 +42,7 @@ export default function Review({ reviews }) {
                   name="rating"
                   value={ratingValue}
                   onClick={() => setRating(ratingValue)}
-                  />
+                />
                 <BsStarFill
                   size={20}
                   color={ratingValue <= rating ? "#ffd700" : "#d3d3d3"}

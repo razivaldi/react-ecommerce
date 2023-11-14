@@ -7,7 +7,7 @@ const ProductsPage = () => {
     <main>
       <PageHero title="products" />
       <div className="page border-2 border-black rounded-2xl -my-14 pb-32">
-        <div className="section-center products">
+        <div className="ml-3 mt-16 products">
           <Filters />
           <div className="mr-3">
             <Sort />
