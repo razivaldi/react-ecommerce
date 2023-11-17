@@ -25,7 +25,9 @@ const user_reducer = (state, action) => {
 
 
     if (action.type === 'USER_LOGOUT') {
-        localStorage.removeItem('userInfo')
+        
+        localStorage.setItem('userInfo', '')
+
         return {...state, userId: '', token: ''}
     }
 

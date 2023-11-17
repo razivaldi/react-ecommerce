@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import { single_product_url as url } from "../utils/constants";
-import { reviews_url } from "../utils/constants";
 import { formatPrice } from "../utils/helpers";
 import {
   Loading,
@@ -21,15 +20,10 @@ const SingleProductPage = () => {
     single_product_error: error,
     single_product: product,
     fetchSingleProduct,
-    review_loading,
-    review_error,
-    reviews,
-    fetchReviews,
   } = useProductsContext();
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
-    fetchReviews(`${reviews_url}${id}`);
     // eslint-disable-next-line
   }, [id]);
   useEffect(() => {
@@ -47,25 +41,16 @@ const SingleProductPage = () => {
     return <Error />;
   }
 
-  if (review_loading) {
-    return <Loading />;
-  }
-  if (review_error) {
-    return <Error />;
-  }
-
   const {
     title,
     price,
     description,
     stock,
-    stars,
     _id: sku,
     brand,
     imageUrl,
+    reviews,
   } = product;
-
-  console.log(reviews)
 
   return (
     <>
@@ -76,7 +61,7 @@ const SingleProductPage = () => {
         </div>
         <div className="m-8">
           <h1 className="text-4xl font-bold">{title}</h1>
-          <Stars stars={stars} reviews={reviews} />
+          <Stars reviews={reviews} />
           <h5 className="text-orange-500 font-semibold">
             {formatPrice(price)}
           </h5>
@@ -93,7 +78,7 @@ const SingleProductPage = () => {
         </div>
 
         {/* review section */}
-        <Review reviews={reviews}/>
+        <Review product={product} />
       </div>
     </>
   );

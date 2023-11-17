@@ -11,9 +11,9 @@ import {
   GET_SINGLE_PRODUCT_BEGIN,
   GET_SINGLE_PRODUCT_SUCCESS,
   GET_SINGLE_PRODUCT_ERROR,
-  GET_REVIEWS_BEGIN,
-  GET_REVIEWS_SUCCESS,
-  GET_REVIEWS_ERROR,
+  POST_REVIEW_BEGIN,
+  POST_REVIEW_SUCCESS,
+  POST_REVIEW_ERROR,
 } from '../actions'
 
 const initialState = {
@@ -31,6 +31,10 @@ const initialState = {
 }
 
 const ProductsContext = React.createContext()
+
+let token = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo")).token
+  : "";
 
 export const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -64,15 +68,26 @@ export const ProductsProvider = ({ children }) => {
     }
   }
 
-  const fetchReviews = async (url) => {
-    dispatch({ type: GET_REVIEWS_BEGIN })
-    try{
-      const response = await axios.get(url)
-      const reviews = response.data
-      dispatch({ type: GET_REVIEWS_SUCCESS, payload: reviews })
-    }catch(error){
-      dispatch({ type: GET_REVIEWS_ERROR })
-    }
+  const postReview = (data) => {
+    dispatch({ type: POST_REVIEW_BEGIN })
+
+     axios({
+      method: 'POST',
+      url: `http://localhost:8000/shop/add-review`,
+      data: data,
+      mode: 'no-cors',
+      headers: {
+        'Access-Control-Allow-Origin': '*', 
+        'Content-Type': 'application/json',
+        Authorization: "Bearer " + token,
+      }
+    }).then((resp) => {
+      console.log(resp)
+      dispatch({ type: POST_REVIEW_SUCCESS, payload: resp.data })
+    }).catch((error) => {
+      dispatch({ type: POST_REVIEW_ERROR })
+      console.log(error)
+    })
   }
 
   useEffect(() => {
@@ -86,7 +101,7 @@ export const ProductsProvider = ({ children }) => {
         openSidebar,
         closeSidebar,
         fetchSingleProduct,
-        fetchReviews,
+        postReview
       }}
     >
       {children}

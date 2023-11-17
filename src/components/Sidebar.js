@@ -1,28 +1,28 @@
-import React from 'react'
-import logo from '../assets/cek-toko-sebelah.png'
-import { Link } from 'react-router-dom'
-import { useProductsContext } from '../context/products_context'
-import { FaTimes } from 'react-icons/fa'
-import { links } from '../utils/constants'
-import styled from 'styled-components'
-import CartButtons from './CartButtons'
-import { useUserContext } from '../context/user_context'
+import React from "react";
+import logo from "../assets/cek-toko-sebelah.png";
+import { Link } from "react-router-dom";
+import { useProductsContext } from "../context/products_context";
+import { FaTimes } from "react-icons/fa";
+import { links } from "../utils/constants";
+import styled from "styled-components";
+import CartButtons from "./CartButtons";
+import { useUserContext } from "../context/user_context";
 
 const Sidebar = () => {
-  const { isSidebarOpen, closeSidebar } = useProductsContext()
-  const { userState } = useUserContext()
+  const { isSidebarOpen, closeSidebar } = useProductsContext();
+  const { userState } = useUserContext();
   return (
     <SidebarContainer>
       <aside
-        className={`${isSidebarOpen ? 'sidebar show-sidebar' : 'sidebar'}`}
+        className={`${isSidebarOpen ? "sidebar show-sidebar" : "sidebar"}`}
       >
-        <div className='sidebar-header'>
-          <img src={logo} className='logo' alt='coding addict' />
-          <button className='close-btn' onClick={closeSidebar}>
+        <div className="sidebar-header">
+          <img src={logo} className="logo" alt="coding addict" />
+          <button className="close-btn" onClick={closeSidebar}>
             <FaTimes />
           </button>
         </div>
-        <ul className='links'>
+        <ul className="links">
           {links.map(({ id, text, url }) => {
             return (
               <li key={id}>
@@ -30,28 +30,32 @@ const Sidebar = () => {
                   {text}
                 </Link>
               </li>
-            )
+            );
           })}
           {userState.userId && (
-          <>
-            <li>
-              <Link to='/checkout' onClick={closeSidebar}>
-                checkout
-              </Link>
-            </li>
-            <li>
-              <Link to='/logout ' onClick={closeSidebar} >
-                logout
-              </Link>
-            </li>
-          </>
+            <>
+              <li>
+                <Link to="/checkout" onClick={closeSidebar}>
+                  checkout
+                </Link>
+              </li>
+              <li>
+                <Link to="/logout " onClick={closeSidebar}>
+                  logout
+                </Link>
+              </li>
+            </>
           )}
+          <li>
+            <Link to="/cart " onClick={closeSidebar}>
+              cart
+            </Link>
+          </li>
         </ul>
-        <CartButtons />
       </aside>
     </SidebarContainer>
-  )
-}
+  );
+};
 
 const SidebarContainer = styled.div`
   text-align: center;
@@ -122,6 +126,6 @@ const SidebarContainer = styled.div`
       display: none;
     }
   }
-`
+`;
 
-export default Sidebar
+export default Sidebar;

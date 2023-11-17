@@ -22,12 +22,12 @@ const initialState = {
 export const UserProvider = ({ children }) => {
   const [userState, dispatch] = useReducer(reducer, initialState);
 
-  const login = async (email, password) => {
+  const login = (email, password) => {
     dispatch({ type: "USER_LOGIN_REQUEST" });
 
     const userData = { email: email, password: password };
 
-    await axios
+    axios
       .post(`http://localhost:8000/auth/login`, userData)
       .then((resp) => {
         dispatch({ type: "USER_LOGIN_SUCCESS", payload: resp.data });
@@ -42,12 +42,12 @@ export const UserProvider = ({ children }) => {
     dispatch({ type: "USER_LOGOUT" });
   };
 
-  const register = async (name, email, password) => {
+  const register = (name, email, password) => {
     dispatch({ type: "USER_REGISTER_REQUEST" });
 
     const userData = { name: name, email: email, password: password };
 
-    await axios
+     axios
       .post(`http://localhost:8000/auth/signup`, userData)
       .then((resp) => {
         dispatch({ type: "USER_REGISTER_SUCCESS", payload: resp.data.message });

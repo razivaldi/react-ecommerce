@@ -47,9 +47,6 @@ export const services = [
   },
 ]
 
-// export const products_url = 'https://63cdf885d2e8c29a9bced636.mockapi.io/api/v1/products'
 export const products_url = 'http://localhost:8000/shop/products'
 
 export const single_product_url = 'http://localhost:8000/shop/product/'
-
-export const reviews_url = 'http://localhost:8000/shop/product/'

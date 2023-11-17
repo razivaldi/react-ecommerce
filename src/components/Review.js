@@ -1,19 +1,30 @@
-import { useRef, useState } from "react";
+
+import { useEffect, useState } from "react";
 import { BsStarFill } from "react-icons/bs";
+import { useProductsContext } from "../context/products_context";
 
-export default function Review({ reviews }) {
-  const [rating, setRating] = useState(null);
-  const userReview = useRef();
+export default function Review({ product }) {
 
-  const handleSubmit = (e) => {
+  const {postReview} = useProductsContext()
+  const [rating, setRating] = useState(0);
+  const [userReview, setUserReview] = useState();
+
+  const data = {
+    productId: product._id,
+    message: userReview,
+    rating: rating
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e);
+    await postReview( data )
   };
 
-  const product = reviews;
   const prodReview = product.reviews;
-  console.log(prodReview);
 
+  useEffect(() => {
+    
+  },[handleSubmit])
   return (
     <>
       <div>
@@ -22,7 +33,7 @@ export default function Review({ reviews }) {
           prodReview.map((review) => (
             <div className="bg-sky-200 rounded-md px-2 my-2" key={review._id}>
               {/* <div>{new Date(review.createdAt).toLocaleDateString()}</div> */}
-              <p className="font-semibold">{review.userId.name}</p>
+              <p className="font-semibold">{review.userId?.name}</p>
               <p>{review.message}</p>
             </div>
           ))}
@@ -54,10 +65,10 @@ export default function Review({ reviews }) {
           <label className="font-medium">Comment</label>
           <br />
           <textarea
-            className="w-full border rounded-lg resize-none border-black"
-            ref={userReview}
+            className="w-full border px-2 rounded-lg resize-none border-black"
+            onChange={(e) => setUserReview(e.target.value)}
           ></textarea>
-          <button className="w-full bg-orange-300 rounded-lg font-semibold">
+          <button type="submit" className="w-full bg-orange-300 rounded-lg font-semibold">
             SUBMIT
           </button>
         </form>

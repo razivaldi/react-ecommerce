@@ -7,9 +7,9 @@ import {
   GET_SINGLE_PRODUCT_BEGIN,
   GET_SINGLE_PRODUCT_SUCCESS,
   GET_SINGLE_PRODUCT_ERROR,
-  GET_REVIEWS_BEGIN,
-  GET_REVIEWS_SUCCESS,
-  GET_REVIEWS_ERROR,
+  POST_REVIEW_BEGIN,
+  POST_REVIEW_SUCCESS,
+  POST_REVIEW_ERROR,
 } from '../actions'
 
 const products_reducer = (state, action) => {
@@ -58,21 +58,21 @@ const products_reducer = (state, action) => {
       single_product_error: true,
     }
   }
-  if (action.type === GET_REVIEWS_BEGIN) {
+  if (action.type === POST_REVIEW_BEGIN) {
     return {
       ...state,
       reviews_loading: true,
       reviews_error: false,
     }
   }
-  if (action.type === GET_REVIEWS_SUCCESS) {
+  if (action.type === POST_REVIEW_SUCCESS) {
     return {
       ...state,
       reviews_loading: false,
       reviews: action.payload,
     }
   }
-  if (action.type === GET_REVIEWS_ERROR) {
+  if (action.type === POST_REVIEW_ERROR) {
     return {
       ...state,
       reviews_loading: false,

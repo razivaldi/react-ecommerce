@@ -59,27 +59,6 @@ const Nav = () => {
                   checkout
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/"
-                  onClick={handleLogout}
-                  className="border-2 border-black px-5 py-1 rounded-full font-medium"
-                >
-                  Logout
-                </Link>
-              </li>
-            </>
-          )}
-          {!userState.userId && (
-            <>
-              <li>
-                <Link
-                  to="/login"
-                  className="border-2 border-black px-5 py-1 rounded-full font-medium"
-                >
-                  login
-                </Link>
-              </li>
             </>
           )}
         </ul>
