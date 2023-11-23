@@ -29,7 +29,7 @@ const Product = ({ imageUrl, title, price, _id, reviews }) => {
             ) : null}
             <Link
               to={`/products/${_id}`}
-              className="font-semibold text-blue-500 hover:text-blue-700 focus:outline-none focus:ring-2 ring-offset-white focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm"
+              className="font-semibold text-blue-500 hover:text-blue-700 focus:rounded focus:outline-none focus:ring-2 ring-offset-white focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm"
             >
               More Detail
             </Link>

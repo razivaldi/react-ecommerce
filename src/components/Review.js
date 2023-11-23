@@ -7,7 +7,7 @@ export default function Review({ product }) {
 
   const {postReview} = useProductsContext()
   const [rating, setRating] = useState(0);
-  const [userReview, setUserReview] = useState();
+  const [userReview, setUserReview] = useState(null);
 
   const data = {
     productId: product._id,
@@ -22,9 +22,6 @@ export default function Review({ product }) {
 
   const prodReview = product.reviews;
 
-  useEffect(() => {
-    
-  },[handleSubmit])
   return (
     <>
       <div>

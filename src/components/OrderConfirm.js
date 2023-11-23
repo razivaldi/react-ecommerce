@@ -4,6 +4,7 @@ import { formatPrice } from "../utils/helpers";
 import CartTotals from "./CartTotals";
 import { BsBox2, BsPersonCircle, BsTruck } from "react-icons/bs";
 import { CheckoutContext } from "../context/checkout_context";
+import { useUserContext } from "../context/user_context";
 
 export default function OrderConfirm() {
   const { cart } = useCartContext();
@@ -55,7 +56,7 @@ export default function OrderConfirm() {
                 >
                   <div className="flex items-center p-2 w-2/6">
                     <img
-                      src={item.image}
+                      src={`http://localhost:8000/${item.image}`}
                       alt={item.name}
                       className="border border-black rounded-xl w-2/4 h-2/4 "
                     />
@@ -77,8 +78,11 @@ export default function OrderConfirm() {
               );
             })}
           </div>
-          <div className="w-full md:w-1/4 md:self-end">
+          <div className=" ml-4 self-end">
             <CartTotals />
+            <button className="border-2 border-black rounded-full bg-orange-500 w-full mt-2 text-white font-semibold">
+              Confirm
+            </button>
           </div>
         </div>
       </div>

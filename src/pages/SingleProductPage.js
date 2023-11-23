@@ -28,9 +28,9 @@ const SingleProductPage = () => {
   }, [id]);
   useEffect(() => {
     if (error) {
-      setTimeout(() => {
-        navigate("/");
-      }, 3000);
+      // setTimeout(() => {
+      //   navigate("/");
+      // }, 3000);
     }
     // eslint-disable-next-line
   }, [error]);

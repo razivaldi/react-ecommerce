@@ -44,15 +44,15 @@ const FeaturedProducts = () => {
   //return featured products
   return (
     <>
-      <h2 className="text-center border-2 mb-16 border-black rounded-full py-3 bg-amber-100">
+      <h2 className="text-center border-2 -mt-8 mb-16 border-black rounded-full py-3 bg-amber-100">
         Featured Product
       </h2>
       <div className="my-10 mx-5">
         <Carousel responsive={responsive}>
           {featured_products.map((product) => {
             return (
-              <div className="mx-3" key={product.id}>
-                <Product key={product.id} {...product} />
+              <div className="mx-3" key={product._id}>
+                <Product key={product._id} {...product} />
               </div>
             );
           })}

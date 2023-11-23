@@ -1,7 +1,8 @@
-import axios from 'axios'
-import React, { useContext, useEffect, useReducer } from 'react'
-import reducer from '../reducers/products_reducer'
-import { products_url as url } from '../utils/constants'
+import axios from "axios";
+import React, { useContext, useEffect, useReducer } from "react";
+import reducer from "../reducers/products_reducer";
+import { products_url as url } from "../utils/constants";
+import { single_product_url } from "../utils/constants";
 import {
   SIDEBAR_OPEN,
   SIDEBAR_CLOSE,
@@ -14,7 +15,8 @@ import {
   POST_REVIEW_BEGIN,
   POST_REVIEW_SUCCESS,
   POST_REVIEW_ERROR,
-} from '../actions'
+} from "../actions";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   isSidebarOpen: false,
@@ -28,71 +30,74 @@ const initialState = {
   reviews_loading: false,
   reviews_error: false,
   reviews: [],
-}
+};
 
-const ProductsContext = React.createContext()
+const ProductsContext = React.createContext();
 
 let token = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo")).token
   : "";
 
 export const ProductsProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, initialState);
+  // const navigate = useNavigate()
 
   const openSidebar = () => {
-    dispatch({ type: SIDEBAR_OPEN })
-  }
+    dispatch({ type: SIDEBAR_OPEN });
+  };
   const closeSidebar = () => {
-    dispatch({ type: SIDEBAR_CLOSE })
-  }
+    dispatch({ type: SIDEBAR_CLOSE });
+  };
 
   const fetchProducts = async (url) => {
-    dispatch({ type: GET_PRODUCTS_BEGIN })
+    dispatch({ type: GET_PRODUCTS_BEGIN });
     try {
-      const response = await axios.get(url)
-      const products = response.data
-      dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products })
+      const response = await axios.get(url);
+      const products = response.data;
+      dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products });
     } catch (error) {
-      dispatch({ type: GET_PRODUCTS_ERROR })
+      dispatch({ type: GET_PRODUCTS_ERROR });
     }
-  }
+  };
 
   const fetchSingleProduct = async (url) => {
-    dispatch({ type: GET_SINGLE_PRODUCT_BEGIN })
+    dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
     try {
-      const response = await axios.get(url)
-      const singleProduct = response.data
-      dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct })
+      const response = await axios.get(url);
+      const singleProduct = response.data;
+      dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct });
     } catch (error) {
-      dispatch({ type: GET_SINGLE_PRODUCT_ERROR })
+      dispatch({ type: GET_SINGLE_PRODUCT_ERROR });
     }
-  }
+  };
 
   const postReview = (data) => {
-    dispatch({ type: POST_REVIEW_BEGIN })
-
-     axios({
-      method: 'POST',
+    dispatch({ type: POST_REVIEW_BEGIN });
+    axios({
+      method: "POST",
       url: `http://localhost:8000/shop/add-review`,
       data: data,
-      mode: 'no-cors',
+      mode: "no-cors",
       headers: {
-        'Access-Control-Allow-Origin': '*', 
-        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
         Authorization: "Bearer " + token,
-      }
-    }).then((resp) => {
-      console.log(resp)
-      dispatch({ type: POST_REVIEW_SUCCESS, payload: resp.data })
-    }).catch((error) => {
-      dispatch({ type: POST_REVIEW_ERROR })
-      console.log(error)
+      },
     })
-  }
+      .then((resp) => {
+        dispatch({ type: POST_REVIEW_SUCCESS, payload: resp.data });
+        fetchSingleProduct(`${single_product_url}${data.productId}`);
+        console.log(data.productId);
+      })
+      .catch((error) => {
+        dispatch({ type: POST_REVIEW_ERROR });
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
-    fetchProducts(url)
-  }, [])
+    fetchProducts(url);
+  }, []);
 
   return (
     <ProductsContext.Provider
@@ -101,14 +106,14 @@ export const ProductsProvider = ({ children }) => {
         openSidebar,
         closeSidebar,
         fetchSingleProduct,
-        postReview
+        postReview,
       }}
     >
       {children}
     </ProductsContext.Provider>
-  )
-}
+  );
+};
 // make sure use
 export const useProductsContext = () => {
-  return useContext(ProductsContext)
-}
+  return useContext(ProductsContext);
+};

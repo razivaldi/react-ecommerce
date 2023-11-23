@@ -17,7 +17,7 @@ const CartButton = () => {
   };
   return (
     <div className="hidden lg:block ">
-      <Link to="/cart" className="inline-flex" onClick={closeSidebar}>
+      <li to="/cart" className="inline-flex" onClick={closeSidebar}>
         {userState.userId && (
           <Link
             to="/"
@@ -38,7 +38,7 @@ const CartButton = () => {
         <span className="text-xl ml-3">
           <FaShoppingCart />
         </span>
-      </Link>
+      </li>
     </div>
   );
 };
