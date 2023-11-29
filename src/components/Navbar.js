@@ -18,19 +18,19 @@ const Nav = () => {
     logout();
   };
 
-  useEffect(() => {
-    if (userState.userId) {
-      navigate("/");
-    }
-  }, [userState]);
+  // useEffect(() => {
+  //   if (userState.userId) {
+  //     navigate("/");
+  //   }
+  // }, [userState]);
 
   return (
     <nav className="nav rounded-b-lg border border-black shadow-lg top-0 z-50 bg-orange-100">
       <div className="nav-center">
         <div className="nav-header">
-          <Link to="/">
+          <div>
             <img src={logo} alt="logo" />
-          </Link>
+          </div>
           <button type="button" className="nav-toggle" onClick={openSidebar}>
             <FaBars />
           </button>
@@ -53,16 +53,18 @@ const Nav = () => {
             <>
               <li>
                 <Link
-                  to="/checkout"
+                  to="/orders"
                   className="border-2 border-black px-5 py-1 rounded-full font-medium"
                 >
-                  checkout
+                  orders
                 </Link>
               </li>
             </>
           )}
         </ul>
-        <CartButtons />
+        <>
+          <CartButtons />
+        </>
       </div>
     </nav>
   );

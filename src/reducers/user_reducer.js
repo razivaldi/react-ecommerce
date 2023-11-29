@@ -27,6 +27,7 @@ const user_reducer = (state, action) => {
     if (action.type === 'USER_LOGOUT') {
         
         localStorage.setItem('userInfo', '')
+        localStorage.setItem('cart', '')
 
         return {...state, userId: '', token: ''}
     }

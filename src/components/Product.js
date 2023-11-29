@@ -12,7 +12,7 @@ const Product = ({ imageUrl, title, price, _id, reviews }) => {
       <div className="flex flex-col bg-white border border-black shadow-sm rounded-xl justify-between">
         <img
           className="w-full px-2 h-60 object-contain rounded-t-xl mt-1"
-          src={`http://localhost:8000/${imageUrl[0]}`}
+          src={`${process.env.REACT_APP_BASE_URL}/${imageUrl[0]}`}
           alt={title}
         />
         <div className="p-2 md:p-3">

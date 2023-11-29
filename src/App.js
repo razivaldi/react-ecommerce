@@ -18,6 +18,7 @@ import Delivery from "./components/Delivery";
 import Payment from "./components/Payment";
 import OrderConfirm from "./components/OrderConfirm";
 import Registration from "./pages/Registration";
+import OrderPage from "./pages/OrderPage";
 function App() {
   return (
     <AuthWrapper>
@@ -35,6 +36,7 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="orders" element={<OrderPage/>}/>
           <Route path="checkout/*" element={<Checkout />}>
             <Route index element={<Delivery/>}/>
             <Route path="payment" element={<Payment/>}/>

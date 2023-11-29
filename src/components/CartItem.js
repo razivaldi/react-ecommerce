@@ -18,7 +18,7 @@ const CartItem = ({ id, image, name, color, price, amount }) => {
       <div className="grid grid-cols-[450px_1fr_1fr_1fr_50px] my-2 rounded-lg items-center text-center bg-neutral-200">
         <div className="flex items-center p-2">
           <img
-            src={`http://localhost:8000/${image}`}
+            src={`${process.env.REACT_APP_BASE_URL}/${image}`}
             alt={name}
             className="border border-black rounded-xl w-2/5 h-auto"
           />

@@ -1,15 +1,62 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useCartContext } from "../context/cart_context";
 import { formatPrice } from "../utils/helpers";
 import CartTotals from "./CartTotals";
 import { BsBox2, BsPersonCircle, BsTruck } from "react-icons/bs";
 import { CheckoutContext } from "../context/checkout_context";
 import { useUserContext } from "../context/user_context";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function OrderConfirm() {
   const { cart } = useCartContext();
   const { deliver } = useContext(CheckoutContext);
+  const { userState } = useUserContext();
+  const [ order, setOrder ] = useState({})
+  const navigate = useNavigate()
 
+  const postOrder = async (datas) => {
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_SHOP_URL}/add-order`, datas, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + JSON.parse(localStorage.getItem("userInfo")).token,
+        },
+      })
+      const result = response.data
+      alert("Your order has been placed")
+      navigate("/")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
+  const userId = userState.userId
+  
+  useEffect(() => {
+    const item = cart.map((item) => {
+      return {
+        productId: item.productId,
+        quantity: item.amount,
+        color: item.color
+      }
+    })
+    setOrder((state) => ({
+      ...state,
+      items: item,
+      userId: userId,
+    }))
+  },[])
+  
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    postOrder(order)
+  }
+
+  console.log("cart", cart)
+  console.log("order", order)
+  
   return (
     <>
       <div className="w-11/12 mx-auto border mt-8 border-black p-5 rounded-2xl">
@@ -56,7 +103,7 @@ export default function OrderConfirm() {
                 >
                   <div className="flex items-center p-2 w-2/6">
                     <img
-                      src={`http://localhost:8000/${item.image}`}
+                      src={`${process.env.REACT_APP_BASE_URL}/${item.image}`}
                       alt={item.name}
                       className="border border-black rounded-xl w-2/4 h-2/4 "
                     />
@@ -80,7 +127,7 @@ export default function OrderConfirm() {
           </div>
           <div className=" ml-4 self-end">
             <CartTotals />
-            <button className="border-2 border-black rounded-full bg-orange-500 w-full mt-2 text-white font-semibold">
+            <button onClick={handleSubmit} className="active:bg-orange-600 border-2 border-black rounded-full bg-orange-500 w-full mt-2 text-white font-semibold">
               Confirm
             </button>
           </div>

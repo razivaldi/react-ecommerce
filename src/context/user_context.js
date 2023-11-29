@@ -1,6 +1,7 @@
 import React, { useContext, useReducer } from "react";
 import reducer from "../reducers/user_reducer";
 import axios from "axios";
+import { redirect, useNavigate } from "react-router-dom";
 
 const UserContext = React.createContext();
 
@@ -22,20 +23,18 @@ const initialState = {
 export const UserProvider = ({ children }) => {
   const [userState, dispatch] = useReducer(reducer, initialState);
 
-  const login = (email, password) => {
+  const login = async (email, password) => {
     dispatch({ type: "USER_LOGIN_REQUEST" });
 
     const userData = { email: email, password: password };
-
-    axios
-      .post(`http://localhost:8000/auth/login`, userData)
-      .then((resp) => {
-        dispatch({ type: "USER_LOGIN_SUCCESS", payload: resp.data });
-        console.log(resp.data);
-      })
-      .catch((err) => {
-        dispatch({ type: "USER_LOGIN_FAIL", payload: err.response.message });
-      });
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/auth/login`, userData)
+      const data = response.data
+      dispatch({ type: "USER_LOGIN_SUCCESS", payload: data });
+    } catch (error) {
+      dispatch({ type: "USER_LOGIN_FAIL", payload: error.response.data.message });
+      alert(error.response.data.message);
+    }
   };
 
   const logout = () => {
@@ -48,7 +47,7 @@ export const UserProvider = ({ children }) => {
     const userData = { name: name, email: email, password: password };
 
      axios
-      .post(`http://localhost:8000/auth/signup`, userData)
+      .post(`${process.env.REACT_APP_BASE_URL}/api/auth/signup`, userData)
       .then((resp) => {
         dispatch({ type: "USER_REGISTER_SUCCESS", payload: resp.data.message });
       })

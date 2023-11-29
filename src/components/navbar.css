@@ -19,9 +19,9 @@
 
 .nav-header img {
     width: 150px;
-    top: -52px;
+    margin-top: 5px;   
     margin-left: 15px;
-    position: absolute;
+    /* position: relative; */
 }
   
 .nav-toggle {

@@ -40,7 +40,6 @@ let token = localStorage.getItem("userInfo")
 
 export const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  // const navigate = useNavigate()
 
   const openSidebar = () => {
     dispatch({ type: SIDEBAR_OPEN });
@@ -75,7 +74,7 @@ export const ProductsProvider = ({ children }) => {
     dispatch({ type: POST_REVIEW_BEGIN });
     axios({
       method: "POST",
-      url: `http://localhost:8000/shop/add-review`,
+      url: `${process.env.REACT_APP_SHOP_URL}/add-review`,
       data: data,
       mode: "no-cors",
       headers: {

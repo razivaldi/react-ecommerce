@@ -32,14 +32,14 @@ const CartContent = () => {
       <CartTotals />
       <div className="flex justify-end">
         {userState.userId ? (
-          <button className="border-2 border-black rounded-full bg-orange-500 w-64 m-2 text-white font-semibold">
-            <Link to="/checkout" className="w-64 h-fit rounded-full">
+          <button className="border-2 border-black rounded-full bg-orange-500 w-60 m-2 text-white font-semibold">
+            <Link to="/checkout" className="w-60 h-fit rounded-full">
               Checkout
             </Link>
           </button>
         ) : (
-          <button className="border-2 border-black rounded-full bg-orange-500 w-64 m-2 text-white font-semibold">
-            <Link to="/login" className="w-64 h-fit rounded-full">
+          <button className="border-2 border-black rounded-full bg-orange-500 w-60 m-2 text-white font-semibold">
+            <Link to="/login" className="w-60 h-fit rounded-full">
               Login
             </Link>
           </button>

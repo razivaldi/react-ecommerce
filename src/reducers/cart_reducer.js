@@ -26,6 +26,7 @@ const cart_reducer = (state, action) => {
     } else {
       const newItem = { 
         id: id + color,
+        productId: id,
         amount: amount,
         name: product.title,
         color: color,

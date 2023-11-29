@@ -47,6 +47,6 @@ export const services = [
   },
 ]
 
-export const products_url =  `${process.env.REACT_APP_BASE_URL}/products`
+export const products_url =  `${process.env.REACT_APP_SHOP_URL}/products`
 
-export const single_product_url = 'http://localhost:8000/shop/product/'
+export const single_product_url = `${process.env.REACT_APP_SHOP_URL}/product/`
